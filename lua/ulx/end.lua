@@ -98,19 +98,6 @@ local function doReasonsCfg( path, noMount )
 	end
 end
 
-local function doMotdCfg( path, noMount )
-	-- Does the module exist for this?
-	if not ulx.motd then
-		return
-	end
-
-	local data_root, err = ULib.parseKeyValues( ULib.stripComments( ULib.fileRead( path, noMount ), ";" ) )
-	if not data_root then Msg( "[ULX] Error in motd config: " .. err .. "\n" ) return end
-
-	ulx.motdSettings = data_root
-	ulx.populateMotdData()
-end
-
 local function doMessageCfg( path, noMount )
 	local message = ULib.stripComments( ULib.fileRead( path, noMount ), ";" ):Trim()
 	if message and message:find("%W") then
